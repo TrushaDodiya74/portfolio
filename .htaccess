@@ -1,0 +1,25 @@
+<Directory "/path/to/your/project">
+  AllowOverride All
+  Require all granted
+</Directory>
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Handle PHP files
+<FilesMatch "\.php$">
+  SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Enable CORS if needed
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+  Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# Ensure directory browsing is disabled
+Options -Indexes
+
+# Handle 405 Method Not Allowed Error
+ErrorDocument 405 /405.html
